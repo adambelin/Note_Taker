@@ -29,8 +29,9 @@ app.delete('/api/notes/:noteid', (req, res) => {
    })
     if (index !== -1) data.splice(index, 1);
     fs.writeFile('./db/db.json', JSON.stringify(data), (err) => {
-      if (err)
+      if (err) {
       console.log(err);
+      }
       res.end()
     });
   })
@@ -46,8 +47,9 @@ app.post('/api/notes', (req, res) => {
     data = JSON.parse(data)
     data.push(req.body)
     fs.writeFile('./db/db.json', JSON.stringify(data), (err) => {
-      if (err)
+      if (err) {
       console.log(err);
+      }
       res.end()
     });
   })
