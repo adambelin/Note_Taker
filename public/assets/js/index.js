@@ -73,9 +73,11 @@ const handleNoteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
-    getAndRenderNotes();
+    console.log('getAndRenderNotes')
+    getAndRenderNotes();    
     renderActiveNote();
   });
+
 };
 
 // Delete the clicked note
@@ -105,7 +107,7 @@ const handleNoteView = (e) => {
 
 // Sets the activeNote to and empty object and allows the user to enter a new note
 const handleNewNoteView = (e) => {
-  console.log("pp poooooopopopo")
+  console.log("test")
   activeNote = {};
   renderActiveNote();
 };
@@ -182,4 +184,4 @@ const getAndRenderNotes = () => getNotes().then(renderNoteList);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 // }
 
-// getAndRenderNotes();
+getAndRenderNotes();
