@@ -19,10 +19,20 @@ app.get('/api/notes', (req, res) => {
   })
 })
 
-app.delete('/api/notes', (req, res) => {
+app.delete('/api/notes/:noteid', (req, res) => {
   console.log(req.body)
+  console.log(req.params.noteid)
   fs.readFile('./db/db.json', 'utf-8', (err, data) => {
-    data=JSON.parse(data)
+    data = JSON.parse(data)
+    let index = data.findIndex(function(o){
+      return o.id === req.params.noteid;
+   })
+    if (index !== -1) data.splice(index, 1);
+    fs.writeFile('./db/db.json', JSON.stringify(data), (err) => {
+      if (err)
+      console.log(err);
+      res.end()
+    });
   })
 })
 
@@ -38,6 +48,7 @@ app.post('/api/notes', (req, res) => {
     fs.writeFile('./db/db.json', JSON.stringify(data), (err) => {
       if (err)
       console.log(err);
+      res.end()
     });
   })
 })
